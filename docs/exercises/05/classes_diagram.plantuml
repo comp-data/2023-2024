@@ -1,0 +1,19 @@
+@startuml
+class Show {
+    - show_id: string
+    - type: string
+    - title: string
+    - director: string
+    - cast: Cast
+    - country: string
+    - date_added: string
+    - release_year: string
+    - rating: string
+    - duration: string
+    - listed_in: string
+    - description: string
+}
+class Cast {
+    - name: string
+}
+@enduml
