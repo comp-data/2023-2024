@@ -58,7 +58,7 @@ These two classes implements the method of the superclass to handle the specific
 ### Class `QueryHandler`
 
 #### Methods
-`getById`: it returns a data frame with all the entities matching the input identifier (i.e. maximum one entity if there exists one with the input id).
+`getById`: it returns a data frame with all the identifiable entities (i.e. cultural heritage objects and people) matching the input identifier (i.e. maximum one entity if there exists one with the input id).
 
 
 ### Class `MetadataQueryHandler`
@@ -113,7 +113,7 @@ These two classes implements the method of the superclass to handle the specific
 
 `getAllPeople`: it returns a list of objects having class `Person` containing all the people included in the database accessible via the query handlers.
 
-`getAllCulturalHeritageObjects` it returns a list of objects having class `CulturalHeritageObject` containing all the people included in the database accessible via the query handlers. The objects included in the list must belong to the appropriate class – e.g. if the `CulturalHeritageObject` to return is actually a map, an instance of the class `Map` (being it a subclass of `CulturalHeritageObject`) must be returned.
+`getAllCulturalHeritageObjects`: it returns a list of objects having class `CulturalHeritageObject` containing all the people included in the database accessible via the query handlers. The objects included in the list must belong to the appropriate class – e.g. if the `CulturalHeritageObject` to return is actually a map, an instance of the class `Map` (being it a subclass of `CulturalHeritageObject`) must be returned.
 
 `getAuthorsOfCulturalHeritageObject`: it returns a list of objects having class `Person` with all the authors of the cultural heritage objects identified by the input id.
 
@@ -206,4 +206,49 @@ result_q3 = mashup.getAuthorsOfObjectsAcquiredInTimeFrame("2023-04-01", "2023-05
 
 ## Submission of the project
 
-You have to provide all Python files implementing your project, by sharing them in some way (e.g. via OneDrive). You have to send all the files **two days before** the exam session you want to take. Before submitting the project, you must be sure that your code passes a basic test which aims at checking if the code is runnable and compliant with the specification of the UML. The test will be provide in the next weeks.
+You have to provide all Python files implementing your project, by sharing them in some way (e.g. via OneDrive). You have to send all the files **two days before** the exam session you want to take. Before submitting the project, you must be sure that your code passes a [the basic test](test.py) which aims at checking if the code is runnable and compliant with the specification of the UML. The test has been developed using [`unittest`](https://docs.python.org/3/library/unittest.html), which is one of Python libraries dedicated to tests. 
+
+To run the test, you should:
+
+1. put the file `test.py` in the folder containing the other files with the code you wrote;
+2. modify the lines 18-21 in `test.py` if needed, i.e. to import correctly your classes from the files you have created;
+3. modify the lines 32-35 in `test.py` if needed, i.e. the paths pointing to the exemplar data used in the test (`meta.csv`, `process.json`), the path of your relational database file and the URL of the SPARQL endpoint of your Blazegraph instance;
+4. run your Blazegraph instance as explained in the related hands-on lecture (`java -server -Xmx1g -jar blazegraph.jar`).
+
+Once everything above is set, open the terminal, go to the directory containing the file `test.py`, and run the following command:
+
+```
+python -m unittest test
+```
+
+It will print on screen status of the execution, reporting on possible errors and mistakes, to allow you to correct them in advance, before the submission. Be aware that this test checks only the compliancy of the methods and the object returned by them, but does not check for additional stuff. You are free, of course, to extend it as you prefer. However, it is **mandatory** that your code passes the test provided without any additional modification (besides the imports mentioned in point (2) and the paths mentioned in point (3)) **before** submitting it.
+
+The same test will be run on all the project provided after their submission. If the project will not pass this basic test, no project evaluation will be performed.
+
+If you notice some mistakes in the test file, please do not hesitate to highlight it.
+
+## F.A.Q.
+
+1. Is the ID of the method getByID the attribute of the class `IdentifiableEntity`?
+   
+   **Answer:** The ID parameter for `getById` does correspond to the `id` attribute of the `IdentifiableEntity` class. The identifiable entities are `CulturalHeritageObject` (and all its subclasses), which uses the `"Id"` column in the CSV, and `Person`, which specifies the identifier in parentheses in the CSV, such as `ULAN:500115349` and `VIAF:78822798`.
+
+2. What information should be contained in the `DataFrame` returned by the method `getById`? 
+   
+   **Answer:** It strongly depends on how you address the implementation of the code. As a basic starting point, the dataframe returned should contain all the attributes about the entity connected to the given `id` input parameter. However, it may also contain or point to (in some way) all the information related to all the other entities pointed by the one returned. For instance, if `getById` returns attributes about a cultural heritage object, also the attributes of the people being author of such an object may be returned as well. This is an important aspect to highlight since, when a user run a method of the class `AdvancedMashup`, e.g. `getEntityById` passing as input an identifier of an existing cultural heritage object such as `"26"` (according to the example in the `meta.csv` file), I expect to have back a python object having class `PrintedMaterial` (which is subclass of `CulturalHeritageObject`) and, if I run its method `getAuthors()` on it, I receive a `list` of items, each of it is an object having class `Person`, with all its attribute set appropriately.
+
+3. In the classes `MetadataQueryHandler` and `ProcessDataQueryHandler` the methods `getAll[something]` (like `getAllPeople()`, `getAllActivities()`, `getAllCulturalHeritageObjects()`), should return a `DataFrame` containing all the entities with the related attributes or just the entities themselves (e.g. the URIs for the graph database and the id we created for the relational database)?
+   
+   **Answer**: It strongly depends on how you address the implementation of the code. The `DataFrame` returned could include all the entities with their related attributes. Returning just the entities themselves, such as URIs for the graph database or IDs for the relational database, might be useful for certain types of queries but generally provides less context than a full set of attributes.
+
+4. We do not understand while there should be multiple `QueryHandlers` in the attribute of the class `BasicMashup`. Are they there in case the user wants to use multiple database of the same kind (es. multiple relational database about processes, multiple graph database about metadata)?
+   
+   **Answer**: The inclusion of multiple `QueryHandlers` for both metadata and process queries in the `BasicMashup` class enables the possibility of querying multiple databases. Here are a few reasons and scenarios where having multiple `QueryHandlers` could be beneficial:
+   
+   * Integration of diverse data sources: in a real-world scenario, cultural heritage data could be stored across various institutions, each maintaining its own database.
+   * Scalability: as the project or the amount of data grows, you may need to distribute the data across multiple databases to manage load. 
+   * Data redundancy and reliability: using multiple databases can also enhance the reliability of your application. By storing and accessing data from multiple sources, your application can remain functional even if one of the databases is temporarily unavailable.
+   * Specialized databases for different needs: different databases might be optimized for different kinds of queries or data.
+   * Development and testing: multiple handlers can be useful in development and testing environments, where you might have separate databases for testing, development, and production.
+   
+   Moreover, even if in this project metadata is stored in graph databases and process data in relational databases, in real-world scenarios, metadata might be distributed across heterogeneous databases, including graph, relational, and other types of databases not covered in this course.
