@@ -230,15 +230,19 @@ If you notice some mistakes in the test file, please do not hesitate to highligh
 ## F.A.Q.
 
 1. Is the ID of the method getByID the attribute of the class `IdentifiableEntity`?
+   
    **Answer:** The ID parameter for `getById` does correspond to the `id` attribute of the `IdentifiableEntity` class. The identifiable entities are `CulturalHeritageObject` (and all its subclasses), which uses the `"Id"` column in the CSV, and `Person`, which specifies the identifier in parentheses in the CSV, such as `ULAN:500115349` and `VIAF:78822798`.
 
 2. What information should be contained in the `DataFrame` returned by the method `getById`? 
+   
    **Answer:** It strongly depends on how you address the implementation of the code. As a basic starting point, the dataframe returned should contain all the attributes about the entity connected to the given `id` input parameter. However, it may also contain or point to (in some way) all the information related to all the other entities pointed by the one returned. For instance, if `getById` returns attributes about a cultural heritage object, also the attributes of the people being author of such an object may be returned as well. This is an important aspect to highlight since, when a user run a method of the class `AdvancedMashup`, e.g. `getEntityById` passing as input an identifier of an existing cultural heritage object such as `"26"` (according to the example in the `meta.csv` file), I expect to have back a python object having class `PrintedMaterial` (which is subclass of `CulturalHeritageObject`) and, if I run its method `getAuthors()` on it, I receive a `list` of items, each of it is an object having class `Person`, with all its attribute set appropriately.
 
 3. In the classes `MetadataQueryHandler` and `ProcessDataQueryHandler` the methods `getAll[something]` (like `getAllPeople()`, `getAllActivities()`, `getAllCulturalHeritageObjects()`), should return a `DataFrame` containing all the entities with the related attributes or just the entities themselves (e.g. the URIs for the graph database and the id we created for the relational database)?
+   
    **Answer**: It strongly depends on how you address the implementation of the code. The `DataFrame` returned could include all the entities with their related attributes. Returning just the entities themselves, such as URIs for the graph database or IDs for the relational database, might be useful for certain types of queries but generally provides less context than a full set of attributes.
 
 4. We do not understand while there should be multiple `QueryHandlers` in the attribute of the class `BasicMashup`. Are they there in case the user wants to use multiple database of the same kind (es. multiple relational database about processes, multiple graph database about metadata)?
+   
    **Answer**: The inclusion of multiple `QueryHandlers` for both metadata and process queries in the `BasicMashup` class enables the possibility of querying multiple databases. Here are a few reasons and scenarios where having multiple `QueryHandlers` could be beneficial:
    
    * Integration of diverse data sources: in a real-world scenario, cultural heritage data could be stored across various institutions, each maintaining its own database.
