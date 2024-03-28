@@ -61,8 +61,8 @@ class TestProjectBasic(unittest.TestCase):
     
     def test_04_ProcessDataQueryHandler(self):
         q = ProcessDataQueryHandler()
-        self.assertTrue(q.setDbPathOrUrl(self.graph))
-        self.assertEqual(q.getDbPathOrUrl(), self.graph)
+        self.assertTrue(q.setDbPathOrUrl(self.relational))
+        self.assertEqual(q.getDbPathOrUrl(), self.relational)
 
         self.assertIsInstance(q.getById("just_a_test"), DataFrame)
 
