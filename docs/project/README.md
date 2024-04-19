@@ -252,3 +252,7 @@ If you notice some mistakes in the test file, please do not hesitate to highligh
    * Development and testing: multiple handlers can be useful in development and testing environments, where you might have separate databases for testing, development, and production.
    
    Moreover, even if in this project metadata is stored in graph databases and process data in relational databases, in real-world scenarios, metadata might be distributed across heterogeneous databases, including graph, relational, and other types of databases not covered in this course.
+
+5. In case more authors are present in the field *Author* of the input CSV, which string is used to separate them?
+
+   **Answer**: the string used is `"; "` - e.g. `"Plinius Secundus, Gaius (VIAF:100219162); Agnese, Battista (ULAN:500048088)"`.
