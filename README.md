@@ -22,11 +22,11 @@ This space contains all the material related to the [Data Science course](https:
 - _hon_ = hands-on session
 
 1. [29/01/24, *the*] Introduction to the course and final project specifications
-   - slides: [Google Slides](https://docs.google.com/presentation/d/1BxXC3jrVAPsZs8IRdh33ljbMMkfFvvVD8DzHlvJp-yw/edit?usp=sharing)
+   - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/00.pdf)
    <hr />
 
 2. [02/02/24, *the*] What is a datum and how it can be represented computationally
-   - slides: [Google Slides](https://docs.google.com/presentation/d/174Mcbd9hHrWboYr3PaIUzn4qxWbB70HoVCwwZ7BMAZk/edit?usp=sharing)
+   - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/01.pdf)
    <hr />
 
 3. [07/02/24, *hon*] Data formats and methods for storing data in Python
@@ -34,7 +34,7 @@ This space contains all the material related to the [Data Science course](https:
    <hr />
 
 4. [09/02/24, *the*] Introduction to data modelling
-   - slides: [Google Slides](https://docs.google.com/presentation/d/1HQ70N95O-5kj1QfMCmdpicwpEH0KUWir8awmw0W2s1g/edit?usp=sharing)
+   - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/02.pdf)
    <hr />
 
 5. [12/02/24, *hon*] Implementation of data models via Python classes
@@ -42,7 +42,7 @@ This space contains all the material related to the [Data Science course](https:
    <hr />
 
 6. [14/02/24, *the*] Processing and querying the data
-   - slides: [Google Slides](https://docs.google.com/presentation/d/1Ykft-hlD2HbREdumEYVcqrX7m2wHQHTng64yQkgCyDo/edit?usp=sharing)
+   - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/03.pdf)
    <hr />
 
 7. [16/02/24, *hon*] Introduction to Pandas
@@ -50,7 +50,7 @@ This space contains all the material related to the [Data Science course](https:
    <hr />
 
 8. [19/02/24, *the*] Database Management Systems
-   - slides: [Google Slides](https://docs.google.com/presentation/d/1am-9--0m2NJCs7VjtOxRnCL-H3CnFDzJ-ECXb6mRy3k/edit?usp=sharing)
+   - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/04.pdf)
    <hr />
 
 9. [21/02/24, *hon*] Configuring and populating a relational database
@@ -58,7 +58,7 @@ This space contains all the material related to the [Data Science course](https:
    <hr />
 
 10. [22/02/24, *the*] SQL, a query language for relational databases
-    - slides: [Google Slides](https://docs.google.com/presentation/d/1uRS3fyLymSaOp0GI5juueFbXebFsLkISpUeVt9Gsh-E/edit?usp=sharing)
+    - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/05.pdf)
     <hr />
 
 11. [28/02/24, *hon*] Configuring and populating a graph database
@@ -66,7 +66,7 @@ This space contains all the material related to the [Data Science course](https:
     <hr />
 
 12. [01/03/24, *the*] SPARQL, a query language for RDF databases
-    - slides: [Google Slides](https://docs.google.com/presentation/d/1ZbFRFF-y0Vr1byG9QMl88mVIdd2BurLjg0BMiNs8h5g/edit?usp=sharing)
+    - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/06.pdf)
     <hr />
 
 13. [04/03/24, *hon*] Interacting with databases using Pandas
@@ -74,7 +74,7 @@ This space contains all the material related to the [Data Science course](https:
     <hr />
 
 14. [06/03/24, *the*] Describing and visualising data
-    - slides: [Google Slides](https://docs.google.com/presentation/d/11Vp1ZC15XPdyObt7REg_bUOUyLKIqSIymHvM-KrPINI/edit?usp=sharing)
+    - slides: [PDF](https://comp-data.github.io/2023-2024/lecture/07.pdf)
     <hr />
 
 15. [08/03/24, *hon*] Descriptive statistics and graphs about data using Pandas
